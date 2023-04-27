@@ -26,12 +26,17 @@ public class Mancala extends JPanel{
 	public Mancala(boolean pitOwner, int pitID, int width, int height) {
 		setLayout(new BorderLayout());
 		stoneAmt = 10;
-		
-		drawPit(this, width, height);
+		this.pitOwner = pitOwner;
+		this.pitID = pitID;
+		//drawPit(this, width, height);
+		drawPit(width, height);
 	}
+	
+	private JPanel pitStorage;
 
 	//METHODS
-	public static void drawPit(Mancala pitFrame, int width, int height) {
+	//public static void drawPit(Mancala pitFrame, int width, int height) {
+	public void drawPit(int width, int height) {
 		JPanel pitStorage = new JPanel() {		
 			@Override
 			public void paintComponent(Graphics g) {
@@ -42,19 +47,32 @@ public class Mancala extends JPanel{
 		pitStorage.setLayout(new BorderLayout());
 		pitStorage.setPreferredSize(new Dimension(width, height));
 		pitStorage.setBorder(BorderFactory.createEmptyBorder(EMPTY_BORDER_SIZE, EMPTY_BORDER_SIZE, EMPTY_BORDER_SIZE, EMPTY_BORDER_SIZE));
-		pitFrame.add(pitStorage, BorderLayout.CENTER);
+		//pitFrame.add(pitStorage, BorderLayout.CENTER);
+		add(pitStorage, BorderLayout.CENTER);
 		
-		JPanel stoneStorage = new JPanel();
+		//JPanel stoneStorage = new JPanel();
 		stoneStorage.setLayout(new FlowLayout());
 		stoneStorage.setPreferredSize(new Dimension(width, height));
 		
-		for(int i = 0; i < pitFrame.getStoneAmt(); i ++) {
-			drawStone(stoneStorage);
-		}
+		//for(int i = 0; i < pitFrame.getStoneAmt(); i ++) {
+		//for(int i = 0; i < getStoneAmt(); i ++) {
+		//	drawStone(stoneStorage);
+		//}
 		pitStorage.add(stoneStorage, BorderLayout.CENTER);
 	}
 	
-	public static void drawStone(JPanel pitStorage) {
+	private JPanel stoneStorage = new JPanel();
+	
+	public void drawStones() {
+		stoneStorage.removeAll(); // added a call to remove all the stones before setting it again
+		for (int i = 0; i < getStoneAmt(); i++) {
+			drawStone();
+
+		}
+	}
+	
+	//public static void drawStone(JPanel pitStorage) {
+	public void drawStone() {
 		Icon stoneIcon = new Icon() {
 			@Override
 			public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -78,7 +96,10 @@ public class Mancala extends JPanel{
 		};
 		
 		JLabel stone = new JLabel(stoneIcon);
-		pitStorage.add(stone);
+		//pitStorage.add(stone);
+		stoneStorage.add(stone);
+		
+		stoneStorage.validate();
 	}
 	
 	//GETTERS
@@ -116,6 +137,7 @@ public class Mancala extends JPanel{
 	}
 	
 	//TEST
+	/*
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		
@@ -128,4 +150,5 @@ public class Mancala extends JPanel{
 		frame.pack();
 		frame.setVisible(true);
 	}
+	*/
 }
