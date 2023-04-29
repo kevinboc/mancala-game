@@ -22,7 +22,7 @@ public class BoardPanel extends JPanel {
 	private Mancala mancalaA = new Mancala(true, 6, 80, 232);
 	private Mancala mancalaB = new Mancala(false, 13, 80, 232);
 
-	//private BoardFormatter bf;
+	private BoardFormatter bf;
 	private StoneDataModel model;
 
 	private int undoNumA;
@@ -37,19 +37,13 @@ public class BoardPanel extends JPanel {
 	private int[] prevStoneAmts = new int[14];
 
 	private ChangeListener c;
-
-	/*
-	public void setStyle(BoardFormatter bf) {
-		this.bf = bf;
-	}
-	*/
-
+	
 	private JLabel winMessage;
 
 	/**
 	 * Constructor for BoardPanel class that sets up the game and board organizaton
 	 */
-	public BoardPanel() {
+	public BoardPanel(BoardFormatter formatter) {
 		playerTurn = true;
 		prevPlayerTurn = true;
 		hasFreeTurn = false;
@@ -84,7 +78,7 @@ public class BoardPanel extends JPanel {
 
 				if ((model.getIndex() == 13 && prevPlayerTurn == false) || (model.getIndex() == 6 && prevPlayerTurn == true)) {
 					//label stating you get a free turn pops up
-					winMessage.setText("Free turn!");
+					//winMessage.setText("Free turn!");
 					//set player turn back to original player
 					setPlayerTurn(prevPlayerTurn);
 					hasFreeTurn = true;
@@ -124,6 +118,14 @@ public class BoardPanel extends JPanel {
 		Rectangle2D r = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
 		g2.setColor(Color.pink);
 		g2.fill(r);
+	}
+	
+	/**
+	 * Sets the style for the board
+	 * @param bf - the style of the board
+	 */
+	public void setStyle(BoardFormatter bf) {
+		this.bf = bf;
 	}
 
 	//********** CENTER BOARD METHODS **************
@@ -276,6 +278,7 @@ public class BoardPanel extends JPanel {
 						if (playerTurn == true) {
 							setPlayerTurn(!playerTurn);
 							if(hasFreeTurn) {
+								winMessage.setText("No more undos, but you have a free turn from your last move, so go again.");//
 								setPlayerTurn(!playerTurn);
 							}
 						}
@@ -293,6 +296,7 @@ public class BoardPanel extends JPanel {
 						if (playerTurn == false) {
 							setPlayerTurn(!playerTurn);
 							if(hasFreeTurn) {
+								winMessage.setText("No more undos, but you have a free turn from your last move, so go again.");//
 								setPlayerTurn(!playerTurn);
 							}
 						}
