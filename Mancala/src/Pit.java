@@ -19,7 +19,8 @@ public class Pit extends JPanel {
 	private int pitID;
 	private int stoneAmt;
 
-	public Pit(String pitName, boolean pitOwner, int pitID, int width, int height) {
+
+	public Pit(String pitName, boolean pitOwner, int pitID, int width, int height, BoardFormatter bf) {
 		setLayout(new BorderLayout());
 		//added pitID initialization and pitOwner initialization
 		this.pitOwner = pitOwner;
@@ -31,19 +32,21 @@ public class Pit extends JPanel {
 		} else {
 			add(pitLabel, BorderLayout.NORTH);
 		}
-		drawPit(width, height);
+		drawPit(width, height, bf);
 	}
 
 	// METHODS
 	//removing the pitFrame parameter and static
 	//public static void drawPit(Pit pitFrame, int width, int height) {
-	public void drawPit(int width, int height) {
+	public void drawPit(int width, int height, BoardFormatter bf) {
 		JPanel pitStorage = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
-				Ellipse2D.Double pitBorder = new Ellipse2D.Double(0, 0, width, height);
+				Ellipse2D.Double pitBorder = bf.formatPitBorder(); //new Ellipse2D.Double(0, 0, width, height);
+				g2.setColor(bf.formatPitColor());
 				g2.draw(pitBorder);
+				g2.fill(pitBorder);
 			}
 		};
 		pitStorage.setLayout(new BorderLayout());
@@ -64,22 +67,22 @@ public class Pit extends JPanel {
 	//made stoneStorage a global variable and moved the drawing of stones to its own method
 	private JPanel stoneStorage = new JPanel();
 
-	public void drawStones() {
+	public void drawStones(BoardFormatter bf) {
 		stoneStorage.removeAll(); // added a call to remove all the stones before setting it again
 		for (int i = 0; i < getStoneAmt(); i++) {
-			drawStone();
+			drawStone(bf);
 
 		}
 	}
 
-	public void drawStone() {
+	public void drawStone(BoardFormatter bf) {
 		Icon stoneIcon = new Icon() {
 			@Override
 			public void paintIcon(Component c, Graphics g, int x, int y) {
 				Graphics2D g2 = (Graphics2D) g;
-
-				Ellipse2D.Double stoneShape = new Ellipse2D.Double(0, 0, STONE_SIZE, STONE_SIZE);
-				g2.setColor(Color.BLACK);
+				
+				Ellipse2D.Double stoneShape = bf.formatStoneShape();	 //new Ellipse2D.Double(0, 0, STONE_SIZE, STONE_SIZE);
+				g2.setColor(bf.formatStoneColor()); 	//Color.BLACK);
 				g2.draw(stoneShape);
 				g2.fill(stoneShape);
 			}

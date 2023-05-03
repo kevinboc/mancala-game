@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JLabel;
 
@@ -25,19 +26,21 @@ public interface BoardFormatter {
 	
 	/////** for Mancala class**/////
 	
-	public Rectangle2D.Double formatMancalaBoard();
+	public RoundRectangle2D.Double formatMancalaBorder();
 	//in drawPit() of mancala class
 	
 	
 	/////** for BoardPanel class **/////
 	
-	public  Rectangle2D.Double formatBoardBorder();
+	public Rectangle2D.Double formatBoardBorder();
 	//to use in the paintComponent()
 	
 	public Color formatBoardColor();
 	//to use in paintComponent()
 	
+	public Color formatStoneColor();
 
+	public Color formatPitColor();
 	
 	
 }

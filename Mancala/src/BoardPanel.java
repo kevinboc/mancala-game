@@ -19,8 +19,8 @@ public class BoardPanel extends JPanel {
 	private Pit[] pitArrA = new Pit[6];
 	private Pit[] pitArrB = new Pit[6];
 
-	private Mancala mancalaA = new Mancala(true, 6, 80, 232);
-	private Mancala mancalaB = new Mancala(false, 13, 80, 232);
+	private Mancala mancalaA;// = new Mancala(true, 6, 80, 232);
+	private Mancala mancalaB;// = new Mancala(false, 13, 80, 232);
 
 	private BoardFormatter bf;
 	private StoneDataModel model;
@@ -43,10 +43,14 @@ public class BoardPanel extends JPanel {
 	/**
 	 * Constructor for BoardPanel class that sets up the game and board organizaton
 	 */
-	public BoardPanel(BoardFormatter formatter) {
+	public BoardPanel(BoardFormatter bf) {
 		playerTurn = true;
 		prevPlayerTurn = true;
 		hasFreeTurn = false;
+		this.bf = bf;
+		
+		mancalaA = new Mancala(true, 6, 80, 232, bf);
+		mancalaB =new Mancala(false, 13, 80, 232, bf);
 
 		model = new StoneDataModel();
 
@@ -58,22 +62,22 @@ public class BoardPanel extends JPanel {
 
 				for (int i = 0; i < pitArrA.length; i++) {
 					pitArrA[i].setStoneAmt(model.getStoneAmts()[i]);
-					pitArrA[i].drawStones();
+					pitArrA[i].drawStones(bf); //passed the formatter
 					pitArrA[i].repaint();
 				}
 
 				mancalaA.setStoneAmt(model.getStoneAmts()[6]);
-				mancalaA.drawStones();
+				mancalaA.drawStones(bf); //added formatter
 				mancalaA.repaint();
 
 				for (int i = 0; i < pitArrB.length; i++) {
 					pitArrB[i].setStoneAmt(model.getStoneAmts()[i + 7]);
-					pitArrB[i].drawStones();
-					pitArrB[i].repaint();
+					pitArrB[i].drawStones(bf);  
+					pitArrB[i].repaint(); 
 				}
 
 				mancalaB.setStoneAmt(model.getStoneAmts()[13]);
-				mancalaB.drawStones();
+				mancalaB.drawStones(bf);
 				mancalaB.repaint();
 
 				if ((model.getIndex() == 13 && prevPlayerTurn == false) || (model.getIndex() == 6 && prevPlayerTurn == true)) {
@@ -165,9 +169,9 @@ public class BoardPanel extends JPanel {
 		for (int i = 0; i <= 5; i++) {
 			Pit pit;
 			if (owner == true) {
-				pit = new Pit(player + (i + 1), owner, i, 80, 100);
+				pit = new Pit(player + (i + 1), owner, i, 80, 100, bf);
 			} else {
-				pit = new Pit(player + (i + 1), owner, i + 7, 80, 100);
+				pit = new Pit(player + (i + 1), owner, i + 7, 80, 100, bf);
 			}
 			pit.setSize(40, 75);
 			pit.addMouseListener(new MouseListener() {

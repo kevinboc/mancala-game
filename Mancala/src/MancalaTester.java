@@ -46,7 +46,7 @@ public class MancalaTester {
 
 			public void actionPerformed(ActionEvent e) {
 
-				board = new BoardPanel(new TraditionalStyle());
+				board = new BoardPanel(new TraditionalFormat());
 
 				pane.add(board);
 
@@ -60,7 +60,7 @@ public class MancalaTester {
 
 			public void actionPerformed(ActionEvent e) {
 
-				board = new BoardPanel(new FunStyle());
+				board = new BoardPanel(new FunFormat());
 
 				pane.add(board);
 

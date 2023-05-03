@@ -23,25 +23,30 @@ public class Mancala extends JPanel{
 	private int pitID;
 	private int stoneAmt;
 	
-	public Mancala(boolean pitOwner, int pitID, int width, int height) {
+	public Mancala(boolean pitOwner, int pitID, int width, int height, BoardFormatter bf) {
 		setLayout(new BorderLayout());
 		stoneAmt = 10;
 		this.pitOwner = pitOwner;
 		this.pitID = pitID;
 		//drawPit(this, width, height);
-		drawPit(width, height);
+		drawPit(width, height, bf);
 	}
 	
 	private JPanel pitStorage;
 
 	//METHODS
 	//public static void drawPit(Mancala pitFrame, int width, int height) {
-	public void drawPit(int width, int height) {
+	public void drawPit(int width, int height, BoardFormatter bf) {
 		JPanel pitStorage = new JPanel() {		
 			@Override
 			public void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
-				g2.drawRoundRect(0, 0, width, height, 60, 60);
+				RoundRectangle2D.Double mancalaPit = bf.formatMancalaBorder();
+				g2.setColor(bf.formatPitColor());
+				g2.draw(mancalaPit);
+				g2.fill(mancalaPit);
+				//g2.setBackground(bf.formatPitColor());
+				//g2.drawRoundRect(0, 0, width, height, 60, 60);
 			}
 		};
 		pitStorage.setLayout(new BorderLayout());
@@ -63,22 +68,23 @@ public class Mancala extends JPanel{
 	
 	private JPanel stoneStorage = new JPanel();
 	
-	public void drawStones() {
+	public void drawStones(BoardFormatter f) {
 		stoneStorage.removeAll(); // added a call to remove all the stones before setting it again
 		for (int i = 0; i < getStoneAmt(); i++) {
-			drawStone();
+			drawStone(f);
 
 		}
 	}
 	
 	//public static void drawStone(JPanel pitStorage) {
-	public void drawStone() {
+	public void drawStone(BoardFormatter bf) {
 		Icon stoneIcon = new Icon() {
 			@Override
 			public void paintIcon(Component c, Graphics g, int x, int y) {
 				Graphics2D g2 = (Graphics2D) g;
-				Ellipse2D.Double stoneShape = new Ellipse2D.Double(0, 0, STONE_SIZE, STONE_SIZE);
-				g2.setColor(Color.BLACK);
+				Ellipse2D.Double stoneShape = bf.formatStoneShape();//new Ellipse2D.Double(0, 0, STONE_SIZE, STONE_SIZE);
+				
+				g2.setColor(bf.formatStoneColor());
 				g2.draw(stoneShape);
 				g2.fill(stoneShape);
 			}
