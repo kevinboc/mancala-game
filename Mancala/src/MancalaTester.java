@@ -24,7 +24,7 @@ public class MancalaTester {
 
 		JFrame frame = new JFrame();
 
-		frame.setSize(new Dimension(750, 360));
+		frame.setSize(new Dimension(850, 360));
 
 		CardLayout c = new CardLayout();
 

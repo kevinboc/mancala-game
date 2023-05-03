@@ -334,6 +334,71 @@ public class BoardPanel extends JPanel {
 	private JPanel rightPanel;
 	private JPanel leftPanel;
 	
+	private Icon aIcon = new Icon() {
+
+		@Override
+		public void paintIcon(Component c, Graphics g, int x, int y) {
+		// TODO Auto-generated method stub
+
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
+			String label = new String("MANCALA");
+			for(int i = 0; i < label.length();i++) {
+				String character = "" + label.charAt(i);
+				g2.drawString(character, 5, 5 + (25 * (i+1)));
+				System.out.println("y is: " + 5 + (25 * (i+1)));
+			}
+			g2.drawString("A", 5, 230);
+			}
+
+		@Override
+		public int getIconWidth() {
+		// TODO Auto-generated method stub
+			return 50;
+		}
+
+		@Override
+		public int getIconHeight() {
+		// TODO Auto-generated method stub
+			return 250;
+		}
+	};
+
+	private Icon bIcon = new Icon() {
+
+		@Override
+		public void paintIcon(Component c, Graphics g, int x, int y) {
+		// TODO Auto-generated method stub
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
+			String label = new String("MANCALA");
+			for(int i = 0; i < label.length();i++) {
+				String character = "" + label.charAt(i);
+				g2.drawString(character, 30, 5 + (25 * (i+1)));
+				System.out.println("y is: " + 5 + (25 * (i+1)));
+			}
+			g2.drawString("B", 30, 230);
+		}
+
+		@Override
+		public int getIconWidth() {
+		// TODO Auto-generated method stub
+			return 50;
+		}
+
+		@Override
+		public int getIconHeight() {
+		// TODO Auto-generated method stub
+			return 250;
+		}
+	};
+
+		//private JLabel mancalaAL = new JLabel("Mancala A");
+
+		private JLabel mancalaAL = new JLabel(aIcon);
+		private JLabel mancalaBL = new JLabel(bIcon);
+
+	
 	/**
 	 * Method to pit all the panels (center, bottom, etc) in their proper places
 	 */
@@ -343,6 +408,8 @@ public class BoardPanel extends JPanel {
 		setUpCenterPanel();
 		rightPanel = new JPanel();
 		leftPanel = new JPanel();
+		rightPanel.add(mancalaAL);
+		leftPanel.add(mancalaBL);
 		add(rightPanel, BorderLayout.EAST);
 		add(leftPanel, BorderLayout.WEST);
 
