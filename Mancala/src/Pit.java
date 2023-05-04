@@ -57,7 +57,7 @@ public class Pit extends JPanel {
 		//JPanel stoneStorage = new JPanel(); //making this into a global variable
 		stoneStorage.setLayout(new FlowLayout());
 		stoneStorage.setPreferredSize(new Dimension(width, height));
-
+		stoneStorage.setBackground(bf.formatPitColor());//used bf
 		/*
 		 * for(int i = 0; i < pitFrame.getStoneAmt();i ++) { drawStone(stoneStorage); }
 		 */ // moving this to its own method

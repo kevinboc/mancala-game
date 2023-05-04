@@ -148,7 +148,7 @@ public class BoardPanel extends JPanel {
 		FlowLayout centerFlow = new FlowLayout();
 		centerFlow.setHgap(0);
 		centerPanel = new JPanel(centerFlow);
-		//centerPanel.setBackground(Color.pink);
+		centerPanel.setBackground(bf.formatBoardColor()); //used bf
 		pitsPanel = new JPanel();
 		mancalaPanelA = new JPanel();
 		mancalaPanelB = new JPanel();
@@ -176,6 +176,7 @@ public class BoardPanel extends JPanel {
 				pit = new Pit(player + (i + 1), owner, i + 7, 80, 100, bf);
 			}
 			pit.setSize(40, 75);
+			pit.setBackground(bf.formatBoardColor());//used bf
 			pit.addMouseListener(new MouseListener() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -235,6 +236,8 @@ public class BoardPanel extends JPanel {
 
 		JPanel aPits = new JPanel();
 		JPanel bPits = new JPanel();
+		aPits.setBackground(bf.formatBoardColor());//used bf
+		bPits.setBackground(bf.formatBoardColor());//used bf
 		BoxLayout pitsLayoutA = new BoxLayout(aPits, BoxLayout.X_AXIS);
 		BoxLayout pitsLayoutB = new BoxLayout(bPits, BoxLayout.X_AXIS);
 
@@ -251,7 +254,12 @@ public class BoardPanel extends JPanel {
 		pitsPanel.setLayout(pitsPanelL);
 		pitsPanel.add(bPits);
 		pitsPanel.add(aPits);
-
+		
+		mancalaPanelA.setBackground(bf.formatBoardColor());//used bf
+		mancalaPanelB.setBackground(bf.formatBoardColor());//used bf
+		mancalaA.setBackground(bf.formatBoardColor());//used bf
+		mancalaB.setBackground(bf.formatBoardColor());//used bf
+		
 		mancalaPanelA.add(mancalaA);
 		mancalaPanelB.add(mancalaB);
 	}
@@ -262,8 +270,9 @@ public class BoardPanel extends JPanel {
 	private JButton undoButton;
 	private JTextField startingStoneInput;
 
-	//holds undo button
-	//holds textbox for number of starting stones
+	/**
+	 * Holds the undo button and textbox for number of starting stones
+	 */
 	public void setUpBottomPanel() {
 
 		bottomPanel = new JPanel();

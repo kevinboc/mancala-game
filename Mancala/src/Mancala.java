@@ -58,7 +58,7 @@ public class Mancala extends JPanel{
 		//JPanel stoneStorage = new JPanel();
 		stoneStorage.setLayout(new FlowLayout());
 		stoneStorage.setPreferredSize(new Dimension(width, height));
-		
+		stoneStorage.setBackground(bf.formatPitColor()); //used bf
 		//for(int i = 0; i < pitFrame.getStoneAmt(); i ++) {
 		//for(int i = 0; i < getStoneAmt(); i ++) {
 		//	drawStone(stoneStorage);
