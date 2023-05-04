@@ -31,6 +31,7 @@ public class BoardPanel extends JPanel {
 	private boolean prevPlayerTurn;
 	private boolean playerTurn;
 	private boolean hasFreeTurn;
+	private boolean hasMadeUndo; 
 	
 	private boolean endCondition;
 
@@ -47,6 +48,7 @@ public class BoardPanel extends JPanel {
 		playerTurn = true;
 		prevPlayerTurn = true;
 		hasFreeTurn = false;
+		hasMadeUndo = false; 
 		this.bf = bf;
 		
 		mancalaA = new Mancala(true, 6, 80, 232, bf);
@@ -183,6 +185,7 @@ public class BoardPanel extends JPanel {
 					// TODO Auto-generated method stub
 					//only does something if the current player owns the pit
 					if ((pit.getPitOwner() == playerTurn) && endCondition == false) {
+						hasMadeUndo = false;
 						hasFreeTurn = false;
 						if (playerTurn == true) {
 							//player a's turn
@@ -269,44 +272,48 @@ public class BoardPanel extends JPanel {
 
 		undoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setPlayerTurn(prevPlayerTurn);
-				if (playerTurn == true) {
-					//player a's turn
-					if (undoNumA != 3) {
-						//resets the model to the prev array using mutator method
-						model.resetStones(prevStoneAmts);
-						//then increments amt of undos
-						undoNumA++;
-					} else {
-						winMessage.setText("No more undos");
-						if (playerTurn == true) {
-							setPlayerTurn(!playerTurn);
-							if(hasFreeTurn) {
-								winMessage.setText("No more undos, but you have a free turn from your last move, so go again.");//
+				if(hasMadeUndo == false) {
+					hasMadeUndo = true;
+					setPlayerTurn(prevPlayerTurn);
+					if (playerTurn == true) {
+						//player a's turn
+						if (undoNumA != 3) {
+							//resets the model to the prev array using mutator method
+							model.resetStones(prevStoneAmts);
+							//then increments amt of undos
+							undoNumA++;
+						} else {
+							winMessage.setText("No more undos");
+							if (playerTurn == true) {
 								setPlayerTurn(!playerTurn);
+								if(hasFreeTurn) {
+									winMessage.setText("No more undos, but you have a free turn from your last move, so go again.");//
+									setPlayerTurn(!playerTurn);
+								}
 							}
+							//so, the game doesn't revert the passing and gives the turn back to the other player
 						}
-						//so, the game doesn't revert the passing and gives the turn back to the other player
-					}
-				} else {
-					//player b's turn
-					if (undoNumB != 3) {
-						//resets the model to the prev array using mutator method
-						model.resetStones(prevStoneAmts);
-						//then increments amt of undos
-						undoNumB++;
 					} else {
-						winMessage.setText("No more undos");
-						if (playerTurn == false) {
-							setPlayerTurn(!playerTurn);
-							if(hasFreeTurn) {
-								winMessage.setText("No more undos, but you have a free turn from your last move, so go again.");//
+						//player b's turn
+						if (undoNumB != 3) {
+							//resets the model to the prev array using mutator method
+							model.resetStones(prevStoneAmts);
+							//then increments amt of undos
+							undoNumB++;
+						} else {
+							winMessage.setText("No more undos");
+							if (playerTurn == false) {
 								setPlayerTurn(!playerTurn);
+								if(hasFreeTurn) {
+									winMessage.setText("No more undos, but you have a free turn from your last move, so go again.");//
+									setPlayerTurn(!playerTurn);
+								}
 							}
+							//so, the game doesn't revert the passing and gives the turn back to other player
 						}
-						//so, the game doesn't revert the passing and gives the turn back to other player
 					}
 				}
+				
 			}
 		});
 
