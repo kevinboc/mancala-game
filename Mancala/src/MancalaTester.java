@@ -30,15 +30,22 @@ public class MancalaTester {
 		pane = new JPanel(c);
 
 		welcomePanel = new JPanel();
-
+		
+		JLabel welcomeMessage = new JLabel("Choose a Mancala style:");
+		Font welcomeFont = new Font("Verdana", Font.PLAIN, 18);
+		welcomeMessage.setFont(welcomeFont);
+		
 		JButton traditionalButton = new JButton("TRADITIONAL");
-
+		traditionalButton.setFont(new Font("Trebuchet MS", Font.BOLD, 25));
+		
 		JButton funButton = new JButton("FUN");
+		funButton.setFont(new Font("Impact", Font.BOLD, 25));
 
+		welcomePanel.add(welcomeMessage);
 		welcomePanel.add(traditionalButton);
 
 		welcomePanel.add(funButton);
-
+		
 		pane.add(welcomePanel);
 
 		traditionalButton.addActionListener(new ActionListener() {
@@ -76,4 +83,5 @@ public class MancalaTester {
 		frame.setVisible(true);
 
 	}
+	
 }

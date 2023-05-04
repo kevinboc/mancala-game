@@ -4,11 +4,15 @@
  * @version 5/5/2023
  */
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -20,11 +24,11 @@ public class FunFormat implements BoardFormatter {
 	final static int PIT_WIDTH = 80;
 	final static int PIT_HEIGHT = 100; 
 	
-	final static int BOARD_WIDTH =  750;
-	final static int BOARD_HEIGHT = 360;
+	final static int BOARD_WIDTH = 750;
+	final static int BOARD_HEIGHT = 380;
 	
 	final static int MANCALA_WIDTH = 80;
-	final static int MANCALA_HEIGHT= 232; 
+	final static int MANCALA_HEIGHT = 232; 
 	
 	final static int STONE_SIZE = 10;
 	
@@ -36,19 +40,23 @@ public class FunFormat implements BoardFormatter {
 	}
 	
 	public Color formatPitColor() {
-		return Color.BLUE;
+		return new Color(114, 218, 255);
+	}
+	
+	public Font formatMancalaLabel() {
+		return new Font("Impact", Font.PLAIN, 20);
 	}
 
 	@Override
-	public JLabel formatPitLabel() {
-		// TODO Auto-generated method stub
-		return null;
+	public Font formatPitLabel() {
+		return new Font("Impact", Font.PLAIN, 15);
 	}
 	
 
 	@Override
-	public Ellipse2D.Double formatStoneShape() {
+	public Ellipse2D.Double  formatStoneShape() {
 		Ellipse2D.Double stone = new Ellipse2D.Double(0, 0, STONE_SIZE, STONE_SIZE);
+		
 		return stone;
 	}
 
@@ -67,10 +75,14 @@ public class FunFormat implements BoardFormatter {
 
 	@Override
 	public Color formatBoardColor() {
-		return Color.LIGHT_GRAY;
+		return new Color(239, 255, 131); 
 	}
 	public Color formatStoneColor() {
-		return Color.magenta; 
+		Random random = new Random();
+		int R = (int) Math.round(Math.random() * 255);
+		int G = (int) Math.round(Math.random() * 255);
+		int B = (int) Math.round(Math.random() * 255);
+		return new Color(R, G, B);
 
 	}
 }

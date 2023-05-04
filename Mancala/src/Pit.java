@@ -37,6 +37,7 @@ public class Pit extends JPanel {
 		this.pitOwner = pitOwner;
 		this.pitID = pitID;
 		JLabel pitLabel = new JLabel(pitName, SwingConstants.CENTER);
+		pitLabel.setFont(bf.formatPitLabel());
 		if (pitOwner) {
 			add(pitLabel, BorderLayout.SOUTH);
 		} else {
@@ -103,6 +104,7 @@ public class Pit extends JPanel {
 				g2.setColor(bf.formatStoneColor()); 	
 				g2.draw(stoneShape);
 				g2.fill(stoneShape);
+				
 			}
 
 			@Override

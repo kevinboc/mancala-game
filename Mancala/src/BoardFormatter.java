@@ -4,6 +4,7 @@
  * @version 5/5/2023
  */
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -29,11 +30,18 @@ public interface BoardFormatter {
 	public Ellipse2D.Double formatPitBorder();
 	
 	/**
-	 * Returns the formatted Pit Label.
+	 * Returns the font for the formatted Pit Label.
 	 * 
-	 * @return the pit label
+	 * @return the font for the pit label
 	 */
-	public JLabel formatPitLabel();
+	public Font formatPitLabel();
+	
+	/**
+	 * Returns the font for the formatted Mancala Label.
+	 * 
+	 * @return the font for the Mancala label
+	 */
+	public Font formatMancalaLabel();
 	
 	
 	/**

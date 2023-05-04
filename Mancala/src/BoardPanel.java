@@ -118,7 +118,6 @@ public class BoardPanel extends JPanel {
 		};
 
 		model.attach(c);
-
 		setLayout(new BorderLayout());
 		setUpBoardPanel();
 		setOpaque(true);
@@ -166,7 +165,7 @@ public class BoardPanel extends JPanel {
 		centerPanel.add(mancalaPanelB);
 		centerPanel.add(pitsPanel);
 		centerPanel.add(mancalaPanelA);
-		centerPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		centerPanel.setBorder(BorderFactory.createLineBorder(bf.formatBoardColor(), 3));
 		add(centerPanel, BorderLayout.CENTER);
 	}
 
@@ -367,7 +366,7 @@ public class BoardPanel extends JPanel {
 		// TODO Auto-generated method stub
 
 			Graphics2D g2 = (Graphics2D) g;
-			g2.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
+			g2.setFont(bf.formatMancalaLabel()); // Font(Font.DIALOG, Font.BOLD, 18));
 			String label = new String("MANCALA");
 			for(int i = 0; i < label.length();i++) {
 				String character = "" + label.charAt(i);
@@ -397,7 +396,8 @@ public class BoardPanel extends JPanel {
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 		// TODO Auto-generated method stub
 			Graphics2D g2 = (Graphics2D) g;
-			g2.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
+			g2.setFont(bf.formatMancalaLabel()); //new Font(Font.DIALOG, Font.BOLD, 18));
+			
 			String label = new String("MANCALA");
 			for(int i = 0; i < label.length();i++) {
 				String character = "" + label.charAt(i);

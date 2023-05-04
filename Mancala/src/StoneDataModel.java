@@ -90,12 +90,14 @@ public class StoneDataModel {
 			if ((stoneAmts[index] == 1)) {
 				if (((0 <= index && index <= 5) && (player == true))) {
 					int pitToSteal = 12 - index;
-					stoneAmts[6] = stoneAmts[6] + stoneAmts[pitToSteal];
+					stoneAmts[6] = stoneAmts[6] + stoneAmts[pitToSteal] + stoneAmts[index];
+					stoneAmts[index] = 0;
 					stoneAmts[pitToSteal] = 0;
 					System.out.println("A stole from B");
 				} else if ((7 <= index && index <= 12) && (player == false)) {
 					int pitToSteal = 5 - (index - 7);
-					stoneAmts[13] = stoneAmts[13] + stoneAmts[pitToSteal];
+					stoneAmts[13] = stoneAmts[13] + stoneAmts[pitToSteal] + stoneAmts[index];
+					stoneAmts[index] = 0;
 					stoneAmts[pitToSteal] = 0;
 					System.out.println("B stole from A");
 				}
@@ -125,7 +127,6 @@ public class StoneDataModel {
 		for (ChangeListener l : listeners) {
 			l.stateChanged(new ChangeEvent(this));
 		}
-
 	}
 
 	/**

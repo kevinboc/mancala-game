@@ -5,6 +5,7 @@
  */
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -28,7 +29,7 @@ public class TraditionalFormat implements BoardFormatter{
 	
 	final static int STONE_SIZE = 10;
 	
-	//private Color color;
+
 	@Override
 	public Ellipse2D.Double formatPitBorder() {
 		Ellipse2D.Double pitBorder = new Ellipse2D.Double(0, 0, PIT_WIDTH, PIT_HEIGHT);
@@ -37,21 +38,23 @@ public class TraditionalFormat implements BoardFormatter{
 	}
 	
 	public Color formatPitColor() {
-		return Color.LIGHT_GRAY;
+		return new Color(215, 163, 94);
 	}
 	
 	
+	public Font formatMancalaLabel() {
+		return new Font("Trebuchet MS", Font.BOLD, 20);
+
+	}
 	@Override
-	public JLabel formatPitLabel() {
-		// TODO Auto-generated method stub
-		return null;
+	public Font formatPitLabel() {
+		
+		return new Font("Trebuchet MS", Font.BOLD, 15);
 	}
-	//need to create this method, not sure how to implement this
 
 	@Override
 	public Ellipse2D.Double formatStoneShape() {
 		Ellipse2D.Double stone = new Ellipse2D.Double(0, 0, STONE_SIZE, STONE_SIZE);
-		
 		return stone;
 	}
 
@@ -66,17 +69,15 @@ public class TraditionalFormat implements BoardFormatter{
 		Rectangle2D.Double boardBorder = new Rectangle2D.Double(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 		return boardBorder;
 	}
-	//need to implement this method, however, its current implementation 
-	//is a part of JPanel's setBorder() method rather than adding a rectangle
 
 	@Override
 	public Color formatBoardColor() {
-		return Color.WHITE;
+		return new Color(245, 231, 200); 
 	}
 
 	@Override
 	public Color formatStoneColor() {
-		return Color.BLACK;
+		return Color.WHITE;
 	}
 
 }
