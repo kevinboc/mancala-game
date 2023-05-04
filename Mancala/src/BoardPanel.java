@@ -1,5 +1,9 @@
+/**
+ * Mancala Game Project
+ * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @version 5/5/2023
+ */
 //File Javadoc that contains the BoardPanel class
-
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.geom.Rectangle2D.Double;
@@ -16,6 +20,7 @@ import java.awt.event.*;
  */
 public class BoardPanel extends JPanel {
 
+	//Private Instance Variables
 	private Pit[] pitArrA = new Pit[6];
 	private Pit[] pitArrB = new Pit[6];
 
@@ -42,7 +47,9 @@ public class BoardPanel extends JPanel {
 	private JLabel winMessage;
 
 	/**
-	 * Constructor for BoardPanel class that sets up the game and board organizaton
+	 * Constructor for BoardPanel class that sets up the game and board organization.
+	 * 
+	 * @param bf the board formatter
 	 */
 	public BoardPanel(BoardFormatter bf) {
 		playerTurn = true;
@@ -127,7 +134,8 @@ public class BoardPanel extends JPanel {
 	}
 	
 	/**
-	 * Sets the style for the board
+	 * Sets the style for the board.
+	 * 
 	 * @param bf - the style of the board
 	 */
 	public void setStyle(BoardFormatter bf) {
@@ -142,7 +150,7 @@ public class BoardPanel extends JPanel {
 	private JPanel mancalaPanelB;
 
 	/**
-	 * Sets up the organization of the gameboard
+	 * Sets up the organization of the game board.
 	 */
 	public void setUpCenterPanel() {
 		FlowLayout centerFlow = new FlowLayout();
@@ -163,7 +171,8 @@ public class BoardPanel extends JPanel {
 	}
 
 	/**
-	 * Creates a set of pits (6 pits)
+	 * Creates a set of pits (6 pits).
+	 * 
 	 * @param player - String of either A or B, the player that owns the pits
 	 * @param owner  - true or false, the player that owns the pits
 	 */
@@ -227,7 +236,7 @@ public class BoardPanel extends JPanel {
 	}
 
 	/**
-	 * Organizes the pits and mancala on the board
+	 * Organizes the pits and mancala on the board.
 	 */
 	public void populateBoard() {
 
@@ -271,7 +280,7 @@ public class BoardPanel extends JPanel {
 	private JTextField startingStoneInput;
 
 	/**
-	 * Holds the undo button and textbox for number of starting stones
+	 * Holds the undo button and textbox for number of starting stones.
 	 */
 	public void setUpBottomPanel() {
 
@@ -346,6 +355,7 @@ public class BoardPanel extends JPanel {
 
 	//******* SET UP WHOLE BOARDPANEL METHOD *******
 
+	//Private Instance Variables
 	private JPanel topPanel;
 	private JPanel rightPanel;
 	private JPanel leftPanel;
@@ -380,6 +390,7 @@ public class BoardPanel extends JPanel {
 		}
 	};
 
+	//Private Instance Variable
 	private Icon bIcon = new Icon() {
 
 		@Override
@@ -416,7 +427,7 @@ public class BoardPanel extends JPanel {
 
 	
 	/**
-	 * Method to pit all the panels (center, bottom, etc) in their proper places
+	 * Method to pit all the panels (center, bottom, etc) in their proper places.
 	 */
 	public void setUpBoardPanel() {
 
@@ -441,7 +452,8 @@ public class BoardPanel extends JPanel {
 	//****** SETTERS ******
 
 	/**
-	 * sets the player turn to given value
+	 * Sets the player turn to given value.
+	 * 
 	 * @param turn - new boolean value for whose turn it is
 	 */
 	public void setPlayerTurn(boolean turn) {
@@ -449,7 +461,8 @@ public class BoardPanel extends JPanel {
 	}
 	
 	/**
-	 * sets the previous turn's player to given value
+	 * Sets the previous turn's player to given value.
+	 * 
 	 * @param prevTurn - new boolean value for the player who went on the prev turn
 	 */
 	public void setPrevPlayerTurn(boolean prevTurn) {
@@ -459,7 +472,7 @@ public class BoardPanel extends JPanel {
 //******* CHECK END CONDITION METHOD *********
 
 	/**
-	 * checks if the game is over
+	 * Checks if the game is over.
 	 */
 	public void checkEndCondition() {
 

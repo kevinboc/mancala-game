@@ -1,38 +1,63 @@
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.geom.Rectangle2D.Double;
-
-import javax.swing.*;
+/**
+ * Mancala Game Project
+ * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @version 5/5/2023
+ */
 import javax.swing.event.*;
 import java.util.*;
-import java.awt.event.*;
+
 
 public class StoneDataModel {
 
+	//Private Instance Variables
 	int[] stoneAmts;
 	int index;
 
 	ArrayList<ChangeListener> listeners = new ArrayList<ChangeListener>();
 
+	/**
+	 * Creates the Stone Data Model Object.
+	 */
 	public StoneDataModel() {
 		stoneAmts = new int[14];
 		index = 0;
 	}
 
+	/**
+	 * Returns the integer array that holds stone amounts.
+	 * 
+	 * @return the integer array that holds the stone amounts
+	 */
 	public int[] getStoneAmts() {
 
 		return stoneAmts;
 
 	}
 
+	/**
+	 * Returns the index.
+	 * 
+	 * @return the index
+	 */
 	public int getIndex() {
 		return index;
 	}
 
+	/**
+	 * Attaches the observers/listeners to the data model.
+	 * 
+	 * @param c the change listener
+	 */
 	public void attach(ChangeListener c) {
 		listeners.add(c);
 	}
 
+	/**
+	 * A mutator method that distributes the stones and notifies views.
+	 * 
+	 * @param startPit the start pit
+	 * @param player the player
+	 */
 	public void distributeStones(int startPit, boolean player) {
 		System.out.println("distributes stones");
 
@@ -84,6 +109,11 @@ public class StoneDataModel {
 
 	}
 
+	/**
+	 * Sets the stone amount array to the specified amount.
+	 * 
+	 * @param amt the stone amount
+	 */
 	public void setStones(int amt) {
 		System.out.println("initializes stones");
 		for (int i = 0; i < stoneAmts.length; i++) {
@@ -98,6 +128,11 @@ public class StoneDataModel {
 
 	}
 
+	/**
+	 * Mutator method that resets the stone amount array and notifies its observers/listeners.
+	 * 
+	 * @param amtArr the stone amount array
+	 */
 	public void resetStones(int[] amtArr) {
 
 		for (int i = 0; i < stoneAmts.length; i++) {
@@ -112,6 +147,11 @@ public class StoneDataModel {
 
 	}
 
+	/**
+	 * Mutator method that changes the model from capturing. It notifies its observers/listeners.
+	 * 
+	 * @param player the player
+	 */
 	public void captureAll(boolean player) {
 		int rest = 0;
 //player a will capture all from their own side

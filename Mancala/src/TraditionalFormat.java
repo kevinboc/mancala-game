@@ -1,16 +1,22 @@
+/**
+ * Mancala Game Project
+ * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @version 5/5/2023
+ */
+
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
-
 import javax.swing.JLabel;
-import javax.swing.border.Border;
 
+/**
+ * The traditional format of the mancala board.
+ */
 public class TraditionalFormat implements BoardFormatter{
 
+	
+	//Constants
 	final static int PIT_WIDTH = 80;
 	final static int PIT_HEIGHT = 100; 
 	
@@ -22,9 +28,7 @@ public class TraditionalFormat implements BoardFormatter{
 	
 	final static int STONE_SIZE = 10;
 	
-	
 	//private Color color;
-	
 	@Override
 	public Ellipse2D.Double formatPitBorder() {
 		Ellipse2D.Double pitBorder = new Ellipse2D.Double(0, 0, PIT_WIDTH, PIT_HEIGHT);

@@ -1,41 +1,54 @@
 /**
  * Mancala Game Project
- * @author Kevin Boc, ...
- * @version 4/6/2023
+ * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @version 5/5/2023
  */
 import java.awt.*;
 import javax.swing.*;
 import java.awt.geom.*;
 
 /**
- * 
+ * Mancala class responsible for drawing the mancala borders and drawing the stones within.
  */
 public class Mancala extends JPanel{
 
+	//Constants
 	private static final int STONE_SIZE = 10;
 	private static final int EMPTY_BORDER_SIZE = 10;
-	private static final int MANCALA_HEIGHT = 232;
-	private static final int MANCALA_WIDTH = 80;
-
 	
-	private String pitName;
-	private boolean pitOwner;
-	private int pitID;
+	//Private Instance Variables
+	private String mancalaName;
+	private boolean mancalaOwner;
+	private int mancalaID;
 	private int stoneAmt;
+	private JPanel stoneStorage = new JPanel();
 	
+	/**
+	 * Creates the Mancala object and its properties.
+	 * 
+	 * @param pitOwner true if it belongs to player A; otherwise, false
+	 * @param pitID the mancala id
+	 * @param width the width
+	 * @param height the height
+	 * @param bf the board formatter
+	 */
 	public Mancala(boolean pitOwner, int pitID, int width, int height, BoardFormatter bf) {
 		setLayout(new BorderLayout());
 		stoneAmt = 10;
-		this.pitOwner = pitOwner;
-		this.pitID = pitID;
-		//drawPit(this, width, height);
+		this.mancalaOwner = pitOwner;
+		this.mancalaID = pitID;
 		drawPit(width, height, bf);
 	}
 	
-	private JPanel pitStorage;
-
-	//METHODS
-	//public static void drawPit(Mancala pitFrame, int width, int height) {
+	// ****** PIT METHODS ******
+	
+	/**
+	 * Draws the mancala pit
+	 * 
+	 * @param width the width
+	 * @param height the height
+	 * @param bf the board formatter
+	 */
 	public void drawPit(int width, int height, BoardFormatter bf) {
 		JPanel pitStorage = new JPanel() {		
 			@Override
@@ -45,29 +58,25 @@ public class Mancala extends JPanel{
 				g2.setColor(bf.formatPitColor());
 				g2.draw(mancalaPit);
 				g2.fill(mancalaPit);
-				//g2.setBackground(bf.formatPitColor());
-				//g2.drawRoundRect(0, 0, width, height, 60, 60);
 			}
 		};
 		pitStorage.setLayout(new BorderLayout());
 		pitStorage.setPreferredSize(new Dimension(width, height));
 		pitStorage.setBorder(BorderFactory.createEmptyBorder(EMPTY_BORDER_SIZE, EMPTY_BORDER_SIZE, EMPTY_BORDER_SIZE, EMPTY_BORDER_SIZE));
-		//pitFrame.add(pitStorage, BorderLayout.CENTER);
 		add(pitStorage, BorderLayout.CENTER);
 		
-		//JPanel stoneStorage = new JPanel();
 		stoneStorage.setLayout(new FlowLayout());
 		stoneStorage.setPreferredSize(new Dimension(width, height));
 		stoneStorage.setBackground(bf.formatPitColor()); //used bf
-		//for(int i = 0; i < pitFrame.getStoneAmt(); i ++) {
-		//for(int i = 0; i < getStoneAmt(); i ++) {
-		//	drawStone(stoneStorage);
-		//}
+		
 		pitStorage.add(stoneStorage, BorderLayout.CENTER);
 	}
 	
-	private JPanel stoneStorage = new JPanel();
-	
+	/**
+	 * Draws the stones
+	 * 
+	 * @param f the board formatter
+	 */
 	public void drawStones(BoardFormatter f) {
 		stoneStorage.removeAll(); // added a call to remove all the stones before setting it again
 		for (int i = 0; i < getStoneAmt(); i++) {
@@ -76,7 +85,11 @@ public class Mancala extends JPanel{
 		}
 	}
 	
-	//public static void drawStone(JPanel pitStorage) {
+	/**
+	 * Helper method to draw stones.
+	 * 
+	 * @param bf the board formatter
+	 */
 	public void drawStone(BoardFormatter bf) {
 		Icon stoneIcon = new Icon() {
 			@Override
@@ -102,59 +115,83 @@ public class Mancala extends JPanel{
 		};
 		
 		JLabel stone = new JLabel(stoneIcon);
-		//pitStorage.add(stone);
 		stoneStorage.add(stone);
-		
 		stoneStorage.validate();
 	}
 	
-	//GETTERS
+	// ****** GETTER METHODS ******
+	
+	/**
+	 * Returns the Mancala Pit ID.
+	 * 
+	 * @return the mancala id
+	 */
 	public int getPitID() {
-		return pitID;
+		return mancalaID;
 	}
 	
+	/**
+	 * Returns the Mancala Pit Name.
+	 * 
+	 * @return the mancala pit name
+	 */
 	public String getPitName() {
-		return pitName;
+		return mancalaName;
 	}
 	
+	/**
+	 * Returns true if the mancala pit belongs to player A; otherwise, false.
+	 * 
+	 * @return true if the mancala pit belongs to player A; otherwise, false
+	 */
 	public boolean getPitOwner() {
-		return pitOwner;
+		return mancalaOwner;
 	}
 	
+	/**
+	 * Returns the stone amount. 
+	 * 
+	 * @return
+	 */
 	public int getStoneAmt() {
 		return stoneAmt;
 	}
 
-	//SETTERS
+	// ****** SETTER METHODS ******
+	
+	/**
+	 * Sets the Mancala Pit ID.
+	 * 
+	 * @param pitID the mancala pit id
+	 */
 	public void setPitID(int pitID) {
-		this.pitID = pitID; 
+		this.mancalaID = pitID; 
 	}
 	
+	/**
+	 * Sets the Mancala Pit Name.
+	 * 
+	 * @param name the mancala pit name
+	 */
 	public void setPitName(String name) {
-		pitName = name;
+		mancalaName = name;
 	}
 	
+	/**
+	 * Sets whether it's player A's player B's turn.
+	 * 
+	 * @param isPlayerA true if it is player A; otherwise, false
+	 */
 	public void setWhoseTurn(boolean isPlayerA) {
-		pitOwner = isPlayerA;
+		mancalaOwner = isPlayerA;
 	}
 	
+	/**
+	 * Sets the stone amount.
+	 * 
+	 * @param amt the stone amount
+	 */
 	public void setStoneAmt(int amt) {
 		stoneAmt = amt;
 	}
-	
-	//TEST
-	/*
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		
-		frame.setLayout(new FlowLayout());
-		
-		Mancala pit = new Mancala(true, 0, MANCALA_WIDTH, MANCALA_HEIGHT);
-		frame.add(pit);
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-	}
-	*/
 }

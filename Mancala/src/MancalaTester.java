@@ -1,23 +1,22 @@
+
+/**
+ * Mancala Game Project
+ * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @version 5/5/2023
+ */
+
 import java.awt.*;
-
-import java.awt.geom.*;
-
-import java.awt.geom.Rectangle2D.Double;
-
 import javax.swing.*;
-
-import javax.swing.event.*;
-
-import java.util.*;
-
 import java.awt.event.*;
 
+/**
+ * Tester class for the Mancala Game.
+ */
 public class MancalaTester {
 
+	//Constants
 	private static JPanel pane;
-
 	private static JPanel welcomePanel;
-
 	private static BoardPanel board;
 
 	public static void main(String[] args) {
@@ -77,5 +76,4 @@ public class MancalaTester {
 		frame.setVisible(true);
 
 	}
-
 }

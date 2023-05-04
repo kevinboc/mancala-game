@@ -1,3 +1,8 @@
+/**
+ * Mancala Game Project
+ * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @version 5/5/2023
+ */
 import java.awt.Color;
 import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Ellipse2D;
@@ -6,7 +11,12 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JLabel;
 
+/**
+ * The fun format of the mancala board.
+ */
 public class FunFormat implements BoardFormatter {
+	
+	//Constants
 	final static int PIT_WIDTH = 80;
 	final static int PIT_HEIGHT = 100; 
 	
@@ -63,5 +73,4 @@ public class FunFormat implements BoardFormatter {
 		return Color.magenta; 
 
 	}
-
 }
