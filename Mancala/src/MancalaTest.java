@@ -1,7 +1,7 @@
 
 /**
  * Mancala Game Project
- * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @author Kevin Boc, Averi Tanlimco, and Brianna Gomez
  * @version 5/5/2023
  */
 
@@ -12,7 +12,7 @@ import java.awt.event.*;
 /**
  * Tester class for the Mancala Game.
  */
-public class MancalaTester {
+public class MancalaTest {
 
 	//Constants
 	private static JPanel pane;

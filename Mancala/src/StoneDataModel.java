@@ -1,19 +1,22 @@
 /**
  * Mancala Game Project
- * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @author Kevin Boc, Averi Tanlimco, and Brianna Gomez
  * @version 5/5/2023
  */
 import javax.swing.event.*;
 import java.util.*;
 
-
+/**
+ * StoneDataModel class for manipulating stone information
+ * Model of the MVC Pattern
+ */
 public class StoneDataModel {
 
 	//Private Instance Variables
-	int[] stoneAmts;
-	int index;
+	private int[] stoneAmts;
+	private int index;
 
-	ArrayList<ChangeListener> listeners = new ArrayList<ChangeListener>();
+	private ArrayList<ChangeListener> listeners = new ArrayList<ChangeListener>();
 
 	/**
 	 * Creates the Stone Data Model Object.
@@ -59,8 +62,6 @@ public class StoneDataModel {
 	 * @param player the player
 	 */
 	public void distributeStones(int startPit, boolean player) {
-		System.out.println("distributes stones");
-
 		int pitsToTraverse = stoneAmts[startPit];
 		index = startPit + 1;
 
@@ -84,26 +85,24 @@ public class StoneDataModel {
 
 		}
 
-//if you're at the last pit
+		//if you're at the last pit
 		if (pitsToTraverse == 0) {
-//and it ends up with 1
+			//and it ends up with 1
 			if ((stoneAmts[index] == 1)) {
 				if (((0 <= index && index <= 5) && (player == true))) {
 					int pitToSteal = 12 - index;
 					stoneAmts[6] = stoneAmts[6] + stoneAmts[pitToSteal] + stoneAmts[index];
 					stoneAmts[index] = 0;
 					stoneAmts[pitToSteal] = 0;
-					System.out.println("A stole from B");
 				} else if ((7 <= index && index <= 12) && (player == false)) {
 					int pitToSteal = 5 - (index - 7);
 					stoneAmts[13] = stoneAmts[13] + stoneAmts[pitToSteal] + stoneAmts[index];
 					stoneAmts[index] = 0;
 					stoneAmts[pitToSteal] = 0;
-					System.out.println("B stole from A");
 				}
 			}
 		}
-//end of last pit check
+		//end of last pit check
 
 		for (ChangeListener l : listeners) {
 			l.stateChanged(new ChangeEvent(this));
@@ -117,7 +116,6 @@ public class StoneDataModel {
 	 * @param amt the stone amount
 	 */
 	public void setStones(int amt) {
-		System.out.println("initializes stones");
 		for (int i = 0; i < stoneAmts.length; i++) {
 			if (i != 6 && i != 13) {
 				stoneAmts[i] = amt;
@@ -144,7 +142,6 @@ public class StoneDataModel {
 		for (ChangeListener l : listeners) {
 			l.stateChanged(new ChangeEvent(this));
 		}
-		System.out.println("reset");
 
 	}
 
@@ -155,7 +152,7 @@ public class StoneDataModel {
 	 */
 	public void captureAll(boolean player) {
 		int rest = 0;
-//player a will capture all from their own side
+		//player a will capture all from their own side
 		if (player == true) {
 			for (int i = 0; i < 6; i++) {
 				rest += stoneAmts[i];
@@ -163,7 +160,7 @@ public class StoneDataModel {
 			}
 			stoneAmts[6] += rest;
 		}
-//player b will capture all from their own side
+		//player b will capture all from their own side
 		else {
 			for (int i = 7; i < 13; i++) {
 				rest += stoneAmts[i];
@@ -174,7 +171,6 @@ public class StoneDataModel {
 		for (ChangeListener l : listeners) {
 			l.stateChanged(new ChangeEvent(this));
 		}
-		System.out.println("captured all, end game");
 	}
 
 }

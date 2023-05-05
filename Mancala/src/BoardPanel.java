@@ -1,6 +1,6 @@
 /**
  * Mancala Game Project
- * @author Kevin Boc, Averi Tamlinco, and Brianna Gomez
+ * @author Kevin Boc, Averi Tanlimco, and Brianna Gomez
  * @version 5/5/2023
  */
 //File Javadoc that contains the BoardPanel class
@@ -14,9 +14,8 @@ import java.util.*;
 import java.awt.event.*;
 
 /**
- * Sets up the board and allows for player interaction
- * @author 
- * @version 1.0 5/5/23
+ * BoardPanel class which sets up the board and allows for player interaction
+ * Contains view and controllers
  */
 public class BoardPanel extends JPanel {
 
@@ -371,7 +370,6 @@ public class BoardPanel extends JPanel {
 			for(int i = 0; i < label.length();i++) {
 				String character = "" + label.charAt(i);
 				g2.drawString(character, 5, 5 + (25 * (i+1)));
-				System.out.println("y is: " + 5 + (25 * (i+1)));
 			}
 			g2.drawString("A", 5, 230);
 			}
@@ -402,7 +400,6 @@ public class BoardPanel extends JPanel {
 			for(int i = 0; i < label.length();i++) {
 				String character = "" + label.charAt(i);
 				g2.drawString(character, 30, 5 + (25 * (i+1)));
-				System.out.println("y is: " + 5 + (25 * (i+1)));
 			}
 			g2.drawString("B", 30, 230);
 		}
